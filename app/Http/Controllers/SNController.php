@@ -77,6 +77,9 @@ class SNController extends Controller
     public function hardDelete($id, SNCashback $snc){
         $delete = $snc->where('id_sn',$id)->delete();
 
-        return redirect()->route('sn')->with('success','data berhasil di Hapus');
+        if(!$delete){
+            return redirect()->route('sn')->with('error','Data gagal di dihapus');
+        }
+        return redirect()->route('sn')->with('success','Data berhasil di hapus');
     }
 }

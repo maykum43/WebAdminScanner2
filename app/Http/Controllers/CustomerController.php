@@ -54,9 +54,19 @@ class CustomerController extends Controller
         ]);
 
         if(!$simpan){
-            return redirect()->route('customer')->with('error','data gagal di dihapus');
+            return redirect()->route('customer')->with('error','Customer gagal di dinonaktifkan');
         }
 
-        return redirect()->route('customer')->with('success','data berhasil di hapus');
+        return redirect()->route('customer')->with('success','Customer berhasil dinonaktifkan');
+    }
+
+    public function hardDelete($id,User $user){
+        $hapus = $user->where('id',$id)->delete();
+
+        if(!$hapus){
+            return redirect()->route('customer')->with('error','Data gagal di dihapus');
+        }
+
+        return redirect()->route('customer')->with('success','Data berhasil di hapus');
     }
 }

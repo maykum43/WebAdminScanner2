@@ -64,9 +64,11 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('edit_sn',$data->id_sn)}}"
-                                                class="btn btn-warning btn-sm">Edit</a>
+                                                class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{{ route('delete_sn',$data->id_sn)}}"
-                                                class="btn btn-danger btn-sm">Nonaktifkan</a>
+                                                class="btn btn-warning btn-sm">Nonaktifkan</a>
+                                            <a href="{{ route('Hdelete_sn',$data->id_sn)}}"
+                                                class="btn btn-danger btn-sm">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>

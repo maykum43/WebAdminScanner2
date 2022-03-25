@@ -15,15 +15,15 @@ class SNController extends Controller
     
     public function index(Request $request){ 
         if($request->has('cari_sn')){
-                    $sn = SNCashback::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('judul','LIKE','%'.$request->cari_sn.'%')->get();
+                    $sn = SNCashback::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('judul','LIKE','%'.$request->cari_sn.'%')->paginate(10);
                 }else{
-                    $sn = SNCashback::all();
+                    $sn = SNCashback::paginate(10);
                 }
                 return view('sn.data_sn', compact('sn'));
     }
 
     public function indexAktif(Request $request){
-        $sn = SNCashback::all()->where('status','Aktif');
+        $sn = SNCashback::where('status','Aktif')->paginate(10);
         return view('sn.data_sn_aktif', compact('sn'));
     }
 

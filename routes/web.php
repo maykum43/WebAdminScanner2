@@ -45,6 +45,7 @@ Route::get('/ubahstatus/{id_rwsn}', 'RWTSNController@UpdateSelesai')->name('upda
 Route::get('/deleteSn/{id}', 'SNController@softDelete')->name('delete_sn');
 Route::get('/deleteRiw/{id_rwsn}', 'RWTSNController@softDelete')->name('delete_riw');
 Route::get('/deleteUsr/{id}', 'CustomerController@softDelete')->name('delete_user');
+Route::get('/HdeleteUsr/{id}', 'CustomerController@hardDelete')->name('Hdelete_user');
 Route::get('/HdeleteSn/{id}','SNController@hardDelete')->name('Hdelete_sn');
 
 //search

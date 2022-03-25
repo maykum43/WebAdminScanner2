@@ -82,11 +82,9 @@
                                 <td>{{ $data->status}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="" 
-                                            class="btn btn-success btn-sm">Detail</a>
                                         <a href="{{ route('edit_user',$data->id)}}" 
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="{{ route('delete_user',$data->id)}}" 
+                                        <a href="{{ route('Hdelete_user',$data->id)}}" 
                                             class="btn btn-danger btn-sm">Hapus</a>
                                     </div>
                                 </td>

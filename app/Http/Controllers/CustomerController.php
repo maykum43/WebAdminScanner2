@@ -16,11 +16,13 @@ class CustomerController extends Controller
     // }
     public function index(Request $request){
         if($request->has('cari_user')){
-            $cust = User::where('name','LIKE','%'.$request->cari_user.'%')->get();
+            $cust = User::where('name','LIKE','%'.$request->cari_user.'%')
+                        ->orWhere('email','LIKE','%'.$request->cari_user.'%')
+                        ->get();
         }else{
             $cust = User::orderBy('created_at','desc')->get();
         }
-        return view('customer.data_cust', compact('cust')); 
+        return view('customer.data_cust', compact('cust'));
     }
 
     public function edit($id){

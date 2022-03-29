@@ -13,8 +13,8 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Customer</h3>
-                <a href="{{ route('create_us') }}" class="btn btn-primary btn-sm float-right">
+                <h3 class="card-title">Data Hadiah</h3>
+                <a href="{{ route('hadiah.create') }}" class="btn btn-primary btn-sm float-right">
                     Tambah Data
                 </a>
             </div>
@@ -26,11 +26,12 @@
                 </div>
                 @endif
 
-                <form method="GET" action="{{ route('customer')}}">
+                
+                <form method="GET" action="{{ route('hadiah.index')}}">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="cari_user" placeholder="Masukan Nama Customer">
+                        <input type="text" class="form-control" name="cari_hadiah" placeholder="Masukan Nama Hadiah">
                         <div class="input-group-prepend">
-                            <button class="btn btn-success" type="submit">Cari User</button>
+                            <button class="btn btn-success" type="submit">Cari Hadiah</button>
                         </div>
                         <!-- /btn-group -->
 
@@ -44,9 +45,9 @@
                     <thead>
                         <tr>
                             <th style="width: 10px">No</th>
-                            <th>Email </th>
-                            <th>Nama</th>
-                            <th>Telepon</th>
+                            <th>Nama </th>
+                            <th>Req Poin</th>
+                            <th>Foto</th>
                             <th>Status</th>
                             <th style="width: 70px">Action
                             </th>
@@ -57,17 +58,21 @@
                         $i = 1;
                         @endphp
 
-                        @foreach ($cust as $data)
+                        @foreach ($hadiahs as $data)
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
-                            <td>{{ $data->email}}</td>
                             <td>{{ $data->name}}</td>
-                            <td>{{ $data->phone}}</td>
+                            <td>{{ $data->req_poin}}</td>
+                            <!-- <td><img src="storage/Hadiah/FotoHadiah/{{$data->foto}}" width="50px"></td>  -->
+                            <td><img src="{{ URL::to('/')}}/storage/Hadiah/FotoHadiah/{{$data->foto}}" class="img-thumbnail" width="65px"></td>
+                            <!-- <td>{{$data->foto}}</td> -->
                             <td>{{ $data->status}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('edit_user',$data->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="{{ route('Hdelete_user',$data->id)}}"
+                                    <a href="{{ route('hadiah.edit',$data->id)}}" 
+                                        class="btn btn-warning btn-sm">Edit</a>
+                                    <!-- {{ route('Hdelete_user',$data->id)}} -->
+                                    <a href="{{ route('Hdelete_hadiah',$data->id)}}"
                                         class="btn btn-danger btn-sm">Hapus</a>
                                 </div>
                             </td>
@@ -76,7 +81,7 @@
                     </tbody>
                 </table>
                 <p>
-                    {{ $cust->links() }}
+                    {{ $hadiahs->links() }}
             </div>
         </div>
     </div>

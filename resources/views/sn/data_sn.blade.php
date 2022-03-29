@@ -11,7 +11,6 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Serial Number</h3>

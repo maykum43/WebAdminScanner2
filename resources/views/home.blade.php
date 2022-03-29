@@ -25,7 +25,7 @@
               <div class="inner">
                 <h3>150</h3>
 
-                <p>Pesanan Baru</p>
+                <p>Scanner Terbaru</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -38,9 +38,10 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>53</h3>
+                <!-- <sup style="font-size: 20px">%</sup> -->
 
-                <p>Semua Transaksi</p>
+                <p>Jumlah Customer</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -55,7 +56,7 @@
               <div class="inner">
                 <h3>44</h3>
 
-                <p>Jumlah Customer</p>
+                <p>Jumlah Serial Number</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>

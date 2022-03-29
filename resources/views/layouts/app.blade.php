@@ -140,7 +140,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{ route('hadiah.index') }}" class="nav-link">
                   <i class="fas fa-gifts nav-icon"></i>
                   <p>Daftar Hadiah</p>
                 </a>
@@ -148,7 +148,7 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                   <i class="far fa-clock nav-icon"></i>
-                  <p>Transaksi Terakhir</p>
+                  <p>Riwayat Redeem</p>
                 </a>
               </li>
             </ul>

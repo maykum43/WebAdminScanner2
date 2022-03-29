@@ -18,9 +18,9 @@ class CustomerController extends Controller
         if($request->has('cari_user')){
             $cust = User::where('name','LIKE','%'.$request->cari_user.'%')
                         ->orWhere('email','LIKE','%'.$request->cari_user.'%')
-                        ->get();
+                        ->paginate(10);
         }else{
-            $cust = User::orderBy('created_at','desc')->get();
+            $cust = User::orderBy('created_at','desc')->paginate(10);
         }
         return view('customer.data_cust', compact('cust'));
     }
@@ -41,6 +41,7 @@ class CustomerController extends Controller
             'atas_nama' =>$request->atas_nama,
             'nama_akun_ol' =>$request->nama_akun_ol,
             'status' =>$request->status,
+            'alamat' =>$request->alamat,
         ]);
 
         if(!$simpan){
@@ -70,5 +71,28 @@ class CustomerController extends Controller
         }
 
         return redirect()->route('customer')->with('success','Data berhasil di hapus');
+    }
+
+    public function create(){
+        return view('customer.create_cust');
+    }
+
+    public function simpan(Request $request){
+
+        // dd($request->all());
+
+        $fileName ='';
+
+        if($request->foto->getClientOriginalName()){
+            $file = str_replace(' ','',$request->foto->getClientOriginalName());
+            $fileName = date('YdmHs').rand(1,999).'_'.$file;
+            $request->foto->storeAs('public/User/FotoProfil',$fileName);
+        }
+        $user = User::create(array_merge($request->all(),[
+            'password' => bcrypt($request->password),
+            'foto' => $fileName
+        ]));
+
+        return redirect()->route('customer')->with('success','Data berhasil di simpan');
     }
 }

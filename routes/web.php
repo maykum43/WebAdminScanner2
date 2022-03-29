@@ -27,6 +27,8 @@ Route::get('/rwt', 'RwtSNController@index')->name('rwtsn');
 //create
 Route::get('/create_sn', 'SNController@create')->name('create_sn');
 Route::post('/simpan_sn', 'SNController@simpan')->name('simpan_sn');
+Route::get('/create_us', 'CustomerController@create')->name('create_us');
+Route::post('/simpan_us', 'CustomerController@simpan')->name('simpan_us');
 Route::get('/create_riw', 'RWTSNController@create')->name('create_riw');
 Route::post('/simpan_riw', 'RWTSNController@simpan')->name('simpan_riw');
 
@@ -54,3 +56,7 @@ Route::get('/cari_user','CustomerController@cariSN')->name('cari_user');
 
 
 // Route::post('/cari_sn','SNController@cariSN')->name('cari_sn');
+
+Route::resource('/hadiah', 'HadiahController');
+
+Route::get('/HdeleteHadiah/{id}','HadiahController@Hdelete')->name('Hdelete_hadiah');

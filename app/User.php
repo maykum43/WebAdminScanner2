@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','norek','nama_bank','atas_nama','nama_akun_ol',
+        'name', 'email', 'password','phone','alamat','norek','nama_bank','atas_nama','nama_akun_ol','foto'
     ];
     public function sns(){
     	return $this->hasMany('App\SNCashback');

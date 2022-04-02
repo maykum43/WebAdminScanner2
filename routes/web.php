@@ -32,6 +32,9 @@ Route::post('/simpan_us', 'CustomerController@simpan')->name('simpan_us');
 Route::get('/create_riw', 'RWTSNController@create')->name('create_riw');
 Route::post('/simpan_riw', 'RWTSNController@simpan')->name('simpan_riw');
 
+//export
+Route::post('/import', 'SNController@store')->name('import_sn');
+
 //edit
 Route::get('/edit_sn/{id}', 'SNController@edit')->name('edit_sn');
 Route::post('/update_sn/{id}','SNController@update')->name('update_sn');

@@ -14,9 +14,15 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Serial Number</h3>
-                <a href="{{ route('create_sn') }}" class="btn btn-primary btn-sm float-right">
-                    Tambah Data
-                </a>
+                <div class="btn-group float-right">
+                    <a href="{{ route('import_sn') }}" class="btn btn-outline-info btn-sm float-right" data-toggle="modal"
+                    data-target="#ModalExportData">
+                        Import Excel
+                    </a>
+                    <a href="{{ route('create_sn') }}" class="btn btn-primary btn-sm float-right">
+                        Tambah Data
+                    </a>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -41,6 +47,8 @@
                             <th style="width: 10px">No</th>
                             <th>Serial Number </th>
                             <th>Nama Produk</th>
+                            <th>Harga Produk</th>
+                            <th>Discount</th>
                             <th>Poin</th>
                             <th>Status</th>
                             <th style="width: 70px">Action
@@ -55,8 +63,10 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->sn}}</td>
-                            <td>{{ $data->judul}}</td>
+                            <td>{{ $data->model}}</td>
                             <td>{{ $data->harga}}</td>
+                            <td>{{ $data->discount}}</td>
+                            <td>{{ $data->poin}}</td>
                             <td>{{ $data->status}}</td>
                             <td>
                                 <div class="btn-group">
@@ -64,11 +74,11 @@
                                     data-target="#ModalDetailData">
                                     Detail
                                 </button> -->
-                                <a href="{{ route('edit_sn',$data->id_sn)}}"
+                                <a href="{{ route('edit_sn',$data->id)}}"
                                     class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{ route('delete_sn',$data->id_sn)}}"
+                                <a href="{{ route('delete_sn',$data->id)}}"
                                     class="btn btn-warning btn-sm">Nonaktifkan</a>
-                                <a href="{{ route('Hdelete_sn',$data->id_sn)}}"
+                                <a href="{{ route('Hdelete_sn',$data->id)}}"
                                     class="btn btn-danger btn-sm">Hapus</a>
                                 </div>
                             </td>
@@ -93,6 +103,46 @@
         </div>
 
     </div><!-- /.container-fluid -->
+
+    <!-- Modal Export Data-->
+    <div class="modal fade" id="ModalExportData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalAddDataLabel">Import Excel Serial Number</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('import_sn') }}" role="form" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Import SN Produk</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="excel">
+                                    <label class="custom-file-label" for="exampleInputFile">Pilih file Excel</label>
+                                </div>
+                                {{-- <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Upload Data</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
 
 </section>
 <!-- /.content -->

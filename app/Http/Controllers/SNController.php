@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SNCashback;
+use Maatwebsite\Excel\Facades\Excel;
+use App\SnProduk;
+use App\Imports\SNImport;
 
 class SNController extends Controller
 {
@@ -15,15 +17,15 @@ class SNController extends Controller
     
     public function index(Request $request){ 
         if($request->has('cari_sn')){
-                    $sn = SNCashback::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('judul','LIKE','%'.$request->cari_sn.'%')->paginate(10);
+                    $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('judul','LIKE','%'.$request->cari_sn.'%')->paginate(10);
                 }else{
-                    $sn = SNCashback::paginate(10);
+                    $sn = SnProduk::paginate(10);
                 }
                 return view('sn.data_sn', compact('sn'));
     }
 
     public function indexAktif(Request $request){
-        $sn = SNCashback::where('status','Aktif')->paginate(10);
+        $sn = SnProduk::where('status','Aktif')->paginate(10);
         return view('sn.data_sn_aktif', compact('sn'));
     }
 
@@ -32,11 +34,13 @@ class SNController extends Controller
     }
 
     public function simpan(Request $request){
-        // dd($request->all());
-        SNCashback::create([
+        dd($request->all());
+        SnProduk::create([
             'sn' => $request->sn,
-            'judul' => $request->judul,
+            'model' => $request->model,
             'harga' => $request->harga,
+            'discount' => $request->discount,
+            'poin' => $request->poin,
             'status' => $request->status,
         ]);
 
@@ -44,15 +48,17 @@ class SNController extends Controller
     }
 
     public function edit($id){
-        $data = SNCashback::where('id_sn',$id)->first();
+        $data = SnProduk::where('id',$id)->first();
         return view('sn.edit_sn', compact('data'));
     }
 
-    public function update($id,SNCashback $snc, Request $request){
-        $simpan = $snc->where('id_sn',$id)->update([
+    public function update($id,SnProduk $snc, Request $request){
+        $simpan = $snc->where('id',$id)->update([
             'sn' => $request->sn,
-            'judul' => $request->judul,
+            'model' => $request->model,
             'harga' => $request->harga,
+            'discount' => $request->discount,
+            'poin' => $request->poin,
             'status' => $request->status,
         ]);
         if(!$simpan){
@@ -61,9 +67,9 @@ class SNController extends Controller
         return redirect()->route('sn')->with('success','data berhasil di update');
     }
 
-    public function softDelete($id, SNCashback $snc){
+    public function softDelete($id, SnProduk $snc){
         
-        $simpan = $snc->where('id_sn',$id)->update([
+        $simpan = $snc->where('id',$id)->update([
             'status' => 'Nonaktif',
         ]);
 
@@ -74,12 +80,27 @@ class SNController extends Controller
         return redirect()->route('sn')->with('success','data berhasil di dinonaktifkan');
     }
 
-    public function hardDelete($id, SNCashback $snc){
-        $delete = $snc->where('id_sn',$id)->delete();
+    public function hardDelete($id, SnProduk $snc){
+        $delete = $snc->where('id',$id)->delete();
 
         if(!$delete){
             return redirect()->route('sn')->with('error','Data gagal di dihapus');
         }
         return redirect()->route('sn')->with('success','Data berhasil di hapus');
+    }
+
+    public function export(){
+        return Excel::download(new SerialNumberExport, 'SN.xlsx');
+    }
+
+    public function import(){
+        return view('import');
+    }
+
+    public function store(Request $request){
+        
+        Excel::import(new SNImport, $request->file('excel'));
+
+        return redirect()->route('sn')->withSuccess('Data Behasil di Import!');
     }
 }

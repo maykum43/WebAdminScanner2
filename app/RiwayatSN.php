@@ -17,7 +17,7 @@ class RiwayatSN extends Model
         'id_rwsn','sn','judul','id','status','created_at'
     ]; 
     public function rwt_sns(){
-    	return $this->hasMany('App\SNCashback');
+    	return $this->hasMany('App\SnProduk');
     }
 
     public function rwt_user(){

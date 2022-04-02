@@ -19,7 +19,7 @@ class User extends Authenticatable
         'name', 'email', 'password','phone','alamat','norek','nama_bank','atas_nama','nama_akun_ol','foto'
     ];
     public function sns(){
-    	return $this->hasMany('App\SNCashback');
+    	return $this->hasMany('App\SnProduk');
     }
 
     public function rwt(){

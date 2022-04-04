@@ -38,19 +38,16 @@
 
                     </div>
                 </form>
-
-
-
                 <table class="table">
                     <thead>
                         <tr>
                             <th style="width: 10px">No</th>
-                            <th>Serial Number </th>
-                            <th>Nama Customer</th>
-                            <!-- <th>Status</th> -->
-                            <th>Tanggal Discann</th>
+                            <th>Serial Number</th>
                             <th>Nama Produk</th>
-                            <th style="width: 70px">Action
+                            <th>Nama Customer</th>
+                            <th>Poin</th>
+                            <th>Tanggal Discann</th>
+                            {{-- <th style="width: 70px">Action  --}}
                             </th>
                         </tr>
                     </thead>
@@ -63,20 +60,20 @@
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
                             <td>{{ $data['sn']}}</td>
+                            <td>{{ $data['model']}}</td>
                             <td>{{ $data['id']}}</td>
-                            <!-- <td>{{ $data['status']}}</td> -->
+                            <td>{{ $data['poin']}}</td>
                             <td>{{ $data['created_at']}}</td>
-                            <td>{{ $data['judul']}}</td>
-                            <td>
+                            {{-- <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('update_status',$data->id_rwsn)}}"
-                                        class="btn btn-success btn-sm">Selesai</a>
-                                    <a href="{{ route('edit_riw',$data->id_rwsn)}}"
-                                        class="btn btn-warning btn-sm">Edit</a>
-                                    <!-- <a href="{{ route('delete_riw',$data->id_rwsn)}}" 
+                                    <a href="{{ route('update_status',$data->id_rwt)}}"
+                                        class="btn btn-success btn-sm">Selesai</a> --}}
+                                    {{-- <a href="{{ route('edit_riw',$data->id_rwt)}}"
+                                        class="btn btn-warning btn-sm">Edit</a> --}}
+                                    <!-- <a href="{{ route('delete_riw',$data->id_rwt)}}" 
                                             class="btn btn-danger btn-sm">Hapus</a> -->
-                                </div>
-                            </td>
+                                {{-- </div>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

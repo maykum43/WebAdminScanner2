@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\RiwayatSN;
-use App\SNCashback;
+use App\SnProduk;
 // use App\User;
 
 class RiwayatController extends Controller
@@ -40,15 +40,17 @@ class RiwayatController extends Controller
         // dd($request->all());
         
         // $sn = SNCashback::where('sn',$request)->first();
-        $judul = SNCashback::where('sn',$request->sn)->value('judul');
+        $model = SnProduk::where('sn',$request->sn)->value('model');
+        $poin = SnProduk::where('sn',$request->sn)->value('poin');
 
         $create_his = RiwayatSN::create([
             'sn' => $request->sn,
             'id' => $request->user,
-            'judul' => $judul,
+            'model' => $model,
+            'poin' => $poin,
         ]);
         
-        SNCashback::where('sn',$request->sn)->update([
+        SnProduk::where('sn',$request->sn)->update([
             'status' => 'Nonaktif',
         ]);
 

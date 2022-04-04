@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\SNCashback;
+use App\SnProduk;
 
 class SnController extends Controller
 {
     public function index(){
         // dd($request->all());die();
-        $sn = SNCashback::all();
+        $sn = SnProduk::all();
         return response()->json([
             'success' => 1,
             'message' => 'Get Serial Number Berhasil',
@@ -20,7 +20,7 @@ class SnController extends Controller
 
     public function cari_sn(Request $request){
 
-        $sn = SNCashback::where('sn','LIKE','%'.$request->cari_sn.'%')->where('status','Aktif')->get();
+        $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->where('status','Aktif')->get();
 
         if($sn !== null){
                return response()->json([

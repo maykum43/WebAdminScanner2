@@ -151,6 +151,12 @@
                   <p>Riwayat Redeem</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                  <i class="far fa-flag nav-icon"></i>
+                  <p>Poin Customer</p>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- menu Logout -->

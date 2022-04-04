@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RiwayatSN;
-use App\SNCashback;
+use App\SnProduk;
 use App\User;
 
 class RwtSNController extends Controller
@@ -24,7 +24,7 @@ class RwtSNController extends Controller
         return view('riwayatSN.data_riwayatSN', compact('riw'));
     }
     public function create(){
-        $data_sn = SNCashback::where('status','Aktif')->get();
+        $data_sn = SnProduk::where('status','Aktif')->get();
         $data_user = User::all(); 
 
         return view('riwayatSN.create_riw',compact('data_sn'),compact('data_user'));
@@ -34,7 +34,7 @@ class RwtSNController extends Controller
         // dd($request->all());
 
         // $judul = SNCashback::where('sn','Aktif')->get();
-        $judul = SNCashback::where('sn',$request->sn)->value('judul');
+        $judul = SnProduk::where('sn',$request->sn)->value('model');
         
         RiwayatSN::create([
             'sn' => $request->sn,
@@ -58,7 +58,7 @@ class RwtSNController extends Controller
     public function update($id,RiwayatSN $rwsn, Request $request){
         // dd($request->all());
 
-        $simpan = $rwsn->where('id_rwsn',$id)->update([
+        $simpan = $rwsn->where('id_rwt',$id)->update([
             'sn' => $request->sn,
             'id' => $request->user,
             'status' => $request->status,

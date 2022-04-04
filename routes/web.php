@@ -63,3 +63,4 @@ Route::get('/cari_user','CustomerController@cariSN')->name('cari_user');
 Route::resource('/hadiah', 'HadiahController');
 
 Route::get('/HdeleteHadiah/{id}','HadiahController@Hdelete')->name('Hdelete_hadiah');
+Route::get('/PoinCust', 'HadiahController@viewPoinCust')->name('PoinUser');

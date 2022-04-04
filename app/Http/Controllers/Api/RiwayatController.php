@@ -66,4 +66,9 @@ class RiwayatController extends Controller
 
         // return redirect()->route('rwtsn');
     }
+
+    public function TotalPoin(Request $request)
+    {
+        $model = SnProduk::where('sn',$request->sn)->value('model');
+    }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\HadiahModel;
+use App\RiwayatSN;
+use App\User;
+
 
 class HadiahController extends Controller
 {
@@ -147,5 +150,32 @@ class HadiahController extends Controller
 
         return redirect()->route('hadiah.index')->with('success','Data berhasil di hapus');
         // return redirect('hadiah')->with('success','Data berhasil di hapus');
+    }
+
+    public function viewPoinCust()
+    {
+        // $poin_user = RiwayatSN::select('SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;');
+        // return view('hadiah.poin_cust',compact('poin_user'));
+
+        $poin_user = RiwayatSN::groupBy('id')
+                    ->selectRaw('id,sum(poin) as totalPoin')
+                    ->get();
+
+                //     if($poin_user){
+                //         return response()->json([
+                //         'success' => 1,
+                //         'message' => 'Hasil Scan',
+                //         'riws' => $poin_user
+                //         ]);
+                //  }
+                //  return $this->error('Belum ada Scan.');
+
+        return view('hadiah.poin_cust',compact('poin_user'));
+    }
+
+    public function JmlPoin_cust()
+    {
+        
+        // SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;
     }
 }

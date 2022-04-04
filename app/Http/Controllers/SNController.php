@@ -17,7 +17,7 @@ class SNController extends Controller
     
     public function index(Request $request){ 
         if($request->has('cari_sn')){
-                    $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('judul','LIKE','%'.$request->cari_sn.'%')->paginate(10);
+                    $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('model','LIKE','%'.$request->cari_sn.'%')->paginate(10);
                 }else{
                     $sn = SnProduk::paginate(10);
                 }
@@ -34,7 +34,7 @@ class SNController extends Controller
     }
 
     public function simpan(Request $request){
-        dd($request->all());
+        // dd($request->all());
         SnProduk::create([
             'sn' => $request->sn,
             'model' => $request->model,
@@ -53,6 +53,7 @@ class SNController extends Controller
     }
 
     public function update($id,SnProduk $snc, Request $request){
+        // dd($request->all());
         $simpan = $snc->where('id',$id)->update([
             'sn' => $request->sn,
             'model' => $request->model,
@@ -101,6 +102,7 @@ class SNController extends Controller
         
         Excel::import(new SNImport, $request->file('excel'));
 
-        return redirect()->route('sn')->withSuccess('Data Behasil di Import!');
+        return redirect()->route('sn')->with('success','data berhasil di dinonaktifkan');
+        // ->withSuccess('Data Behasil di Import!');
     }
 }

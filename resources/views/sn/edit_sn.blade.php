@@ -18,8 +18,8 @@
                     {{ session('status') }}
                 </div>
                 @endif
-
-                <form action="{{ route('update_sn',$data->id_sn) }}" method="POST">
+                {{--  --}}
+                <form action="{{ route('update_sn',$data->id) }}" method="POST">
                     @csrf
 
                     <div class="form-group mb-3">
@@ -27,12 +27,20 @@
                         <input type="text" name="sn" class="form-control" value="{{$data->sn}}">
                     </div>
                     <div class="form-group mb-3">
-                        <label>Judul</label>
-                        <input type="text" name="judul" class="form-control" value="{{$data->judul}}">
+                        <label>Model Produk</label>
+                        <input type="text" name="model" class="form-control" value="{{$data->model}}">
                     </div>
                     <div class="form-group mb-3">
                         <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" value="{{$data->harga}}">
+                        <input type="number" name="harga" id="harga" class="form-control" value="{{$data->harga}}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Discount</label>
+                        <input type="number" name="discount" id="discount" class="form-control" value="{{$data->discount}}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Poin</label>
+                        <input type="number" name="poin" id="poin" class="form-control" value="{{$data->poin}}">
                     </div>
                     <!-- select -->
                     <div class="form-group" name="status">
@@ -51,4 +59,32 @@
         </div>
     </div>
 </section>
+
+{{-- <script>
+		
+    var rupiah = document.getElementById('harga');
+    rupiah.addEventListener('keyup', function(e){
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script> --}}
 @endsection

@@ -48,7 +48,7 @@
                             <th>Serial Number </th>
                             <th>Nama Produk</th>
                             <th>Harga Produk</th>
-                            <th>Discount</th>
+                            <th>Discount (%)</th>
                             <th>Poin</th>
                             <th>Status</th>
                             <th style="width: 70px">Action
@@ -58,22 +58,20 @@
                     <tbody>
                         @php
                         $i = 1;
+                        // $english_format_number = number_format();
                         @endphp
                         @foreach($sn as $data)
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->sn}}</td>
                             <td>{{ $data->model}}</td>
-                            <td>{{ $data->harga}}</td>
-                            <td>{{ $data->discount}}</td>
+                            {{-- number_format($number, 2, '.', ''); --}}
+                            <td>Rp. {{number_format($data->harga,2,',','.')}}</td>
+                            <td>{{ $data->discount}}%</td>
                             <td>{{ $data->poin}}</td>
                             <td>{{ $data->status}}</td>
                             <td>
                                 <div class="btn-group">
-                                <!-- <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
-                                    data-target="#ModalDetailData">
-                                    Detail
-                                </button> -->
                                 <a href="{{ route('edit_sn',$data->id)}}"
                                     class="btn btn-primary btn-sm">Edit</a>
                                 <a href="{{ route('delete_sn',$data->id)}}"
@@ -84,16 +82,6 @@
                             </td>
                         </tr>
                         @endforeach
-                        <!-- <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
-                    </tr> -->
                     </tbody>
                 </table>
                 <p>

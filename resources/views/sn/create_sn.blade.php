@@ -20,6 +20,10 @@
                 </div>
                 @endif
 
+                @php
+                    $poin = round('poin')
+                @endphp
+
                 <form action="{{ route('simpan_sn')}}" method="POST" name="inputDataSn">
                     @csrf
 
@@ -46,7 +50,7 @@
                     <div class="form-group mb-3">
                         <label>Poin</label>
                         <input type="number" name="poin" class="form-control @error('poin') is-invalid @enderror"
-                            id="poin" value="{{ old('poin') }}" required autocomplete="poin" onkeyup="hitPoin()" autofocus>
+                            id="poin" value="$poin" required autocomplete="poin" onkeyup="hitPoin()" autofocus >
                     </div>
                     <!-- select -->
                     <div class="form-group" name="status">
@@ -74,7 +78,7 @@
     // var result = (parseInt(harga)/parseInt(disc))/parseInt(penentu);
     var hargaDisc = (disc/100)*harga;
 
-    var result = (harga/disc)/120;
+    var result = Math.round((harga/disc)/120);
     // var result = (harga-hargaDisc)/120;
     
         if(!isNaN(result)){

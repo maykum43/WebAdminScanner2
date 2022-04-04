@@ -21,6 +21,8 @@
                             <th style="width: 10px">No</th>
                             <th>Serial Number </th>
                             <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Discount (%)</th>
                             <th>Poin</th>
                             <!-- <th style="width: 70px">Action
                             </th> -->
@@ -35,14 +37,16 @@
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->sn}}</td>
-                            <td>{{ $data->judul}}</td>
-                            <td>{{ $data->harga}}</td>
+                            <td>{{ $data->model}}</td>
+                            <td>Rp. {{ $data->harga}}</td>
+                            <td>{{ $data->discount}}</td>
+                            <td>{{ $data->poin}}</td>
                             <!-- <td>{{ $data->status}}</td> -->
                             <!-- <td>
                                     <div class="btn-group">
                                         <a href="" 
                                             class="btn btn-success btn-sm">Detail</a>
-                                        <a href="{{ route('edit_sn',$data->id_sn)}}" 
+                                        <a href="{{ route('edit_sn',$data->id)}}" 
                                             class="btn btn-warning btn-sm">Edit</a>
                                         <a href="" 
                                             class="btn btn-danger btn-sm">Hapus</a>

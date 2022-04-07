@@ -26,6 +26,7 @@ Route::get('cari_sn','Api\SnController@cari_sn');
 Route::get('create_his','Api\RiwayatController@create_his');
 Route::put('update_user/{email}','Api\UserController@update');
 Route::get('cari_pelanggan','Api\UserController@cari_pelanggan');
+Route::get('totalPoin','Api\RiwayatController@TotalPoin');
 
 Route::post('login','Api\UserController@login');
 Route::post('register','Api\UserController@register');
@@ -34,3 +35,5 @@ Route::post('rwt_sn','Api\RiwayatController@his_sn');
 Route::post('create_his','Api\RiwayatController@create_his');
 // Route::post('update_user','Api\CustomerController@update');
 Route::post('cari_pelanggan','Api\UserController@cari_pelanggan');
+Route::post('totalPoin','Api\RiwayatController@TotalPoin');
+

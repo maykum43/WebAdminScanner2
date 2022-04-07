@@ -14,7 +14,7 @@ class RiwayatSN extends Model
     protected $primaryKey = "id_rwt";
     protected $foreignKey = "sn";
     protected $fillable = [
-        'id_rwt','sn','model','poin','id','status','created_at'
+        'id_rwt','sn','model','poin','email','status','created_at'
     ]; 
     public function rwt_sns(){
     	return $this->hasMany('App\SnProduk');

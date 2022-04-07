@@ -72,18 +72,24 @@
 <script>
 
     function hitPoin(){
-    var harga = document.getElementById('harga').value;
+    var hargaJual = document.getElementById('harga').value;
     var disc = document.getElementById('discount').value;
 
-    // var result = (parseInt(harga)/parseInt(disc))/parseInt(penentu);
-    var hargaDisc = (disc/100)*harga;
+    //Rumusu Poin
+    //=(D2-(D2-(D2*E2/100))*1)/100/120
+    //D2 = Harga Jual
+    //E2 = Discount
 
-    var result = Math.round((harga/disc)/120);
-    // var result = (harga-hargaDisc)/120;
+    // // var result = (parseInt(harga)/parseInt(disc))/parseInt(penentu);
+    // var hargaDisc = harga-(harga*disc/100);
+    // var hargaAsli = harga-hargaDisc;
+    // var satuPer = hargaAsli*1/100;
+
+    var result = Math.round((hargaJual-(hargaJual-(hargaJual*disc/100))*1)/100/100);
     
         if(!isNaN(result)){
             document.getElementById('poin').value=result;
         }
     }    
-    </script>
+</script>
 @endsection

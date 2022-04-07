@@ -157,9 +157,10 @@ class HadiahController extends Controller
         // $poin_user = RiwayatSN::select('SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;');
         // return view('hadiah.poin_cust',compact('poin_user'));
 
-        $poin_user = RiwayatSN::groupBy('id')
-                    ->selectRaw('id,sum(poin) as totalPoin')
-                    ->get();
+        $poin_user = RiwayatSN::groupBy('email')
+                    ->selectRaw('email,sum(poin) as totalPoin')
+                    ->orderBy('totalPoin', 'DESC')
+                    ->paginate(10);
 
                 //     if($poin_user){
                 //         return response()->json([
@@ -173,9 +174,8 @@ class HadiahController extends Controller
         return view('hadiah.poin_cust',compact('poin_user'));
     }
 
-    public function JmlPoin_cust()
+    public function redeemPoin()
     {
         
-        // SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;
     }
 }

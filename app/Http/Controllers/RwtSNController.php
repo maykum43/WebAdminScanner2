@@ -17,7 +17,7 @@ class RwtSNController extends Controller
     public function index(Request $request){
 
         if($request->has('cari')){
-            $riw = RiwayatSN::where('id','LIKE','%'.$request->cari.'%')->paginate(10);
+            $riw = RiwayatSN::where('email','LIKE','%'.$request->cari.'%')->paginate(10);
         }else{
             $riw = RiwayatSN::orderBy('created_at','desc')->paginate(10);
         }
@@ -39,7 +39,7 @@ class RwtSNController extends Controller
         RiwayatSN::create([
             'sn' => $request->sn,
              
-            'id' => $request->user,
+            'email' => $request->user,
             'status' => $request->status,
         ]);
 
@@ -60,7 +60,7 @@ class RwtSNController extends Controller
 
         $simpan = $rwsn->where('id_rwt',$id)->update([
             'sn' => $request->sn,
-            'id' => $request->user,
+            'email' => $request->user,
             'status' => $request->status,
         ]);
 

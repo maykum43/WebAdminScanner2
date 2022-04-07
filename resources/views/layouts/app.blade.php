@@ -146,7 +146,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                {{--  --}}
+                <a href="{{ route('redeemPoin.index')}}" class="nav-link">
                   <i class="far fa-clock nav-icon"></i>
                   <p>Riwayat Redeem</p>
                 </a>

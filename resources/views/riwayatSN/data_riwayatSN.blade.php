@@ -44,7 +44,7 @@
                             <th style="width: 10px">No</th>
                             <th>Serial Number</th>
                             <th>Nama Produk</th>
-                            <th>Nama Customer</th>
+                            <th>Email Customer</th>
                             <th>Poin</th>
                             <th>Tanggal Discann</th>
                             {{-- <th style="width: 70px">Action  --}}
@@ -61,7 +61,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $data['sn']}}</td>
                             <td>{{ $data['model']}}</td>
-                            <td>{{ $data['id']}}</td>
+                            <td>{{ $data['email']}}</td>
                             <td>{{ $data['poin']}}</td>
                             <td>{{ $data['created_at']}}</td>
                             {{-- <td>

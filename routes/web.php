@@ -61,6 +61,7 @@ Route::get('/cari_user','CustomerController@cariSN')->name('cari_user');
 // Route::post('/cari_sn','SNController@cariSN')->name('cari_sn');
 
 Route::resource('/hadiah', 'HadiahController');
+Route::resource('/redeemPoin', 'RedeemPoinController');
 
 Route::get('/HdeleteHadiah/{id}','HadiahController@Hdelete')->name('Hdelete_hadiah');
 Route::get('/PoinCust', 'HadiahController@viewPoinCust')->name('PoinUser');

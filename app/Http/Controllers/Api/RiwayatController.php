@@ -13,7 +13,7 @@ class RiwayatController extends Controller
     public function index(Request $request){
         // dd($request->all());die();
         if($request->has('cari')){
-            $riw = RiwayatSN::where('id','LIKE','%'.$request->cari.'%')->get();
+            $riw = RiwayatSN::where('email','LIKE','%'.$request->cari.'%')->get();
         }
         return response()->json([
             'success' => 1,
@@ -24,7 +24,7 @@ class RiwayatController extends Controller
 
     public function his_sn(Request $request){ 
 
-        $his = RiwayatSN::where('id','LIKE','%'.$request->his_sn.'%')->orderBy('created_at','desc')->get();
+        $his = RiwayatSN::where('email','LIKE','%'.$request->his_sn.'%')->orderBy('created_at','desc')->get();
 
         if($his){
                return response()->json([
@@ -45,7 +45,7 @@ class RiwayatController extends Controller
 
         $create_his = RiwayatSN::create([
             'sn' => $request->sn,
-            'id' => $request->user,
+            'email' => $request->user,
             'model' => $model,
             'poin' => $poin,
         ]);
@@ -69,6 +69,17 @@ class RiwayatController extends Controller
 
     public function TotalPoin(Request $request)
     {
-        $model = SnProduk::where('sn',$request->sn)->value('model');
+        // $poin_user = RiwayatSN::select('email',$request->email,'sum(poin)');
+        $poin_user = RiwayatSN::where('email',$request->email)->sum('poin');
+        //SELECT SUM(poin)FROM riwayat_sn WHERE email = 'Fikri Maulana 2';
+
+                    if($poin_user){
+                        return response()->json([
+                        'success' => 1,
+                        'message' => 'Total Poin',
+                        'TotalPoin' => $poin_user
+                        ]);
+                    }
+                    return $this->error('Poin Error.');
     }
 }

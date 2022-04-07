@@ -18,7 +18,7 @@ class CreateRiwayatSnTable extends Migration
             $table->string('sn'); //mengambil dari tb_sn
             $table->string('model');
             $table->integer('poin')->default(0);
-            $table->string('id'); //ini id_user
+            $table->string('email'); //ini email_user
             $table->string('status')->default('Belum Selesai');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

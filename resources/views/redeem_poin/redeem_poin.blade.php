@@ -12,10 +12,10 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Poin Customer</h3>
-                <a href="{{ route('hadiah.create') }}" class="btn btn-primary btn-sm float-right">
+                <h3 class="card-title">Data Riwayat Redeem Poin Customer</h3>
+                {{-- <a href="" class="btn btn-primary btn-sm float-right">
                     Tambah Data
-                </a>
+                </a> --}}
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -28,9 +28,9 @@
                 {{-- {{ route('hadiah.index')}} --}}
                 <form method="GET" action="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="cari_hadiah" placeholder="Masukan Nama Hadiah">
+                        <input type="text" class="form-control" name="cari_hadiah" placeholder="Masukan Nama Customer">
                         <div class="input-group-prepend">
-                            <button class="btn btn-success" type="submit">Cari Hadiah</button>
+                            <button class="btn btn-success" type="submit">Cari Customer</button>
                         </div>
                         <!-- /btn-group -->
 
@@ -44,10 +44,13 @@
                     <thead>
                         <tr>
                             <th style="width: 10px">No</th>
-                            <th>Nama </th>
-                            <th>Poin Total Poin</th>
-                            {{-- <th style="width: 170px">Action
-                            </th> --}}
+                            <th>Nama Customer </th>
+                            <th>Nama Hadiah</th>
+                            <th>Jumlah Poin</th>
+                            <th>Tanggal Redeem</th>
+                            <th>Status</th>
+                            <th style="width: 70px">Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,17 +58,30 @@
                         $i = 1;
                         @endphp
 
-                        @foreach ($poin_user as $data)
+                        @foreach ($data_redeem as $data)
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->email}}</td>
-                            <td>{{ $data->totalPoin}}</td>
+                            <td>{{ $data->nama_hadiah}}</td>
+                            <td>{{$data->jml_poin}}</td>
+                            <td>{{$data->create_at}}</td>
+                            <td>{{$data->status}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    {{-- {{ route('hadiah.edit',$data->id)}} --}}
+                                    <a href="" 
+                                        class="btn btn-info btn-sm">Selesai</a>
+                                        {{-- {{ route('Hdelete_hadiah',$data->id)}} --}}
+                                    <a href=""
+                                        class="btn btn-danger btn-sm">Hapus</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <p>
-                    {{ $poin_user->links() }}
+                    {{ $data_redeem->links() }}
             </div>
         </div>
     </div>

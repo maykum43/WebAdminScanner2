@@ -88,4 +88,26 @@ class RedeemPoinController extends Controller
     {
         //
     }
+
+    public function viewPoinCust()
+    {
+        // $poin_user = RiwayatSN::select('SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;');
+        // return view('hadiah.poin_cust',compact('poin_user'));
+
+        $poin_user = RiwayatSN::groupBy('email')
+                    ->selectRaw('email,sum(poin) as totalPoin')
+                    ->orderBy('totalPoin', 'DESC')
+                    ->paginate(10);
+
+        return view('hadiah.poin_cust',compact('poin_user'));
+    }
+
+    public function redeemPoin()
+    {
+        $totalPoin_user = RiwayatSN::groupBy('email')
+                    ->selectRaw('email,sum(poin) as totalPoin');
+
+        $req_poinHadiah = HadiahModel::where('name',$request->name)->get('req_poin');
+        
+    }
 }

@@ -478,6 +478,7 @@ class ComposerStaticInit3b05413bbb94df8f8106225208e9b3e3
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\SNExport' => __DIR__ . '/../..' . '/app/Exports/SNExport.php',
         'App\\HadiahModel' => __DIR__ . '/../..' . '/app/HadiahModel.php',
+        'App\\Http\\Controllers\\Api\\HadiahController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/HadiahController.php',
         'App\\Http\\Controllers\\Api\\RiwayatController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RiwayatController.php',
         'App\\Http\\Controllers\\Api\\SnController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/SnController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',

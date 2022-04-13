@@ -11,6 +11,7 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\SNExport' => $baseDir . '/app/Exports/SNExport.php',
     'App\\HadiahModel' => $baseDir . '/app/HadiahModel.php',
+    'App\\Http\\Controllers\\Api\\HadiahController' => $baseDir . '/app/Http/Controllers/Api/HadiahController.php',
     'App\\Http\\Controllers\\Api\\RiwayatController' => $baseDir . '/app/Http/Controllers/Api/RiwayatController.php',
     'App\\Http\\Controllers\\Api\\SnController' => $baseDir . '/app/Http/Controllers/Api/SnController.php',
     'App\\Http\\Controllers\\Api\\UserController' => $baseDir . '/app/Http/Controllers/Api/UserController.php',

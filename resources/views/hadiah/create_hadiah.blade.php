@@ -42,7 +42,7 @@
                                 <input type="file" class="custom-file-input @error('req_poin') is-invalid @enderror" 
                                 id="foto" name="foto">
                                 <!-- onchange="previewImage()" -->
-                                <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                                <label class="custom-file-label text-muted" >*Gambar harus berukuran 1080*1080 (png)</label>
                             </div>
                             <!-- <div class="input-group-append">
                                     <span class="input-group-text">Upload</span>

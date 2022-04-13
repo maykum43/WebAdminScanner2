@@ -48,6 +48,7 @@
                             <th>Nama </th>
                             <th>Req Poin</th>
                             <th>Foto</th>
+                            <th>Stok</th>
                             <th>Status</th>
                             <th style="width: 70px">Action
                             </th>
@@ -62,10 +63,11 @@
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->name}}</td>
-                            <td>{{ $data->req_poin}}</td>
+                            <td>{{number_format($data->req_poin,0,',','.')}} Poin</td>
                             <!-- <td><img src="storage/Hadiah/FotoHadiah/{{$data->foto}}" width="50px"></td>  -->
                             <td><img src="{{ URL::to('/')}}/storage/Hadiah/FotoHadiah/{{$data->foto}}" class="img-thumbnail" width="65px"></td>
                             <!-- <td>{{$data->foto}}</td> -->
+                            <td>{{ $data->stok}}</td>
                             <td>{{ $data->status}}</td>
                             <td>
                                 <div class="btn-group">

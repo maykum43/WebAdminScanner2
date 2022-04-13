@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\HadiahModel;
 use App\RiwayatSN;
 use App\User;
+use App\RiwRedModel;
 
 
 class HadiahController extends Controller
@@ -113,6 +114,7 @@ class HadiahController extends Controller
                 'req_poin' =>$request->req_poin,
                 'foto' =>$fileName,
                 'status' =>$request->status,
+                'stok' =>$request->stok,
             ]);
     
             if(!$simpan){
@@ -154,28 +156,29 @@ class HadiahController extends Controller
 
     public function viewPoinCust()
     {
-        // $poin_user = RiwayatSN::select('SELECT id, SUM(poin) AS TotalPoin FROM riwayat_sn GROUP BY id;');
-        // return view('hadiah.poin_cust',compact('poin_user'));
+
+        // $req_poinHadiah = HadiahModel::where('name',$request->name)->sum('req_poin');
 
         $poin_user = RiwayatSN::groupBy('email')
                     ->selectRaw('email,sum(poin) as totalPoin')
                     ->orderBy('totalPoin', 'DESC')
                     ->paginate(10);
 
-                //     if($poin_user){
-                //         return response()->json([
-                //         'success' => 1,
-                //         'message' => 'Hasil Scan',
-                //         'riws' => $poin_user
-                //         ]);
-                //  }
-                //  return $this->error('Belum ada Scan.');
+        // $poinAwal = RiwayatSN::where('email')->sum('poin');
+        // $poinRedeem= RiwRedModel::where('email')->sum('jml_poin');
+
+        // $totalPoin_user = RiwayatSN::where('email')->sum('poin');
+        // $poinRedeem= RiwRedModel::where('email')->sum('jml_poin');
+        // $sisaPoin = $totalPoin_user - $poinRedeem;
+
+        // ->orderBy('email','DESC')
+        // ->paginate(10);
 
         return view('hadiah.poin_cust',compact('poin_user'));
     }
 
     public function redeemPoin()
     {
-        
+                
     }
 }

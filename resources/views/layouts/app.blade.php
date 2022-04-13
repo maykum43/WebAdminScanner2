@@ -80,7 +80,27 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               
+          
+          <div class="user-panel mt-0 pb-2 mb-3 d-flex">
+            <div class="image">
+              <img src="dist/img/logo_gpt.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+              {{-- {{ Auth::user()->name }} --}}
+              <!-- Authentication Links -->
+              @guest
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+          @else
+              <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      {{ Auth::user()->name }}
+                  </a>
+              </li>
+          @endguest
+            </div>
+          </div>               
           <!-- menu Home -->
           <li class="nav-item">
             <a href="{{ route('home') }}" class="nav-link">
@@ -123,11 +143,28 @@
           <!-- menu Customer -->
           <li class="nav-item">
             <a href="{{ route('customer') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Customer
+                <i class="fas fa-angle-down right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('customer') }}" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data Customer
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{Route('PoinUser')}}" class="nav-link">
+                  <i class="far fa-flag nav-icon"></i>
+                  <p>Poin Customer</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <!-- menu Redeem Voucher -->
           <li class="nav-item">
@@ -150,12 +187,6 @@
                 <a href="{{ route('redeemPoin.index')}}" class="nav-link">
                   <i class="far fa-clock nav-icon"></i>
                   <p>Riwayat Redeem</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{Route('PoinUser')}}" class="nav-link">
-                  <i class="far fa-flag nav-icon"></i>
-                  <p>Poin Customer</p>
                 </a>
               </li>
             </ul>

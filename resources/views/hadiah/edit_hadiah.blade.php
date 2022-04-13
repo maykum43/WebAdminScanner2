@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group mb-3 col-4">
                         <label>Request Poin</label>
-                        <input type="text" name="req_poin" class="form-control" value="{{$data->req_poin}}">
+                        <input type="number" name="req_poin" class="form-control" value="{{$data->req_poin}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Gambar Hadiah</label>
@@ -50,6 +50,10 @@
                             <option value="Aktif" id="Aktif">Aktif</option>
                             <option value="Nonaktif" id="Nonaktif">Nonktif</option>
                         </select>
+                    </div>
+                    <div class="form-group mb-3 col-4">
+                        <label>Stok</label>
+                        <input type="number" name="stok" class="form-control" value="{{$data->stok}}">
                     </div>
                     <div class="form-group mb-4">
                         <button type="submit" class="btn btn-primary btn-mb-4">Simpan Perubahan</button>

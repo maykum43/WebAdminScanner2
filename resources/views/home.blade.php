@@ -19,12 +19,11 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <!-- box pesanan baru -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-3">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
+                <h3>{{$hitScan}}</h3>
                 <p>Scanner Terbaru</p>
               </div>
               <div class="icon">
@@ -34,11 +33,11 @@
             </div>
           </div>
           <!-- box semua transaksi -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-3">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3>{{$hitUser}}</h3>
                 <!-- <sup style="font-size: 20px">%</sup> -->
 
                 <p>Jumlah Customer</p>
@@ -50,12 +49,11 @@
             </div>
           </div>
           <!-- box customer -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-3">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
-
+                <h3>{{$hitSn}}</h3>
                 <p>Jumlah Serial Number</p>
               </div>
               <div class="icon">
@@ -65,11 +63,11 @@
             </div>
           </div>
           <!-- box semua produk -->
-          <div class="col-lg-3 col-6">
+          {{-- <div class="col-lg-3 col-6"> --}}
             <!-- small box -->
-            <div class="small-box bg-primary">
+            {{-- <div class="small-box bg-primary">
               <div class="inner">
-                <h3>2000</h3>
+                <h3>{{$hitModel}}</h3>
 
                 <p>Jumlah Produk</p>
               </div>
@@ -78,7 +76,7 @@
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div> --}}
 
         </div>
         <!-- /.row -->

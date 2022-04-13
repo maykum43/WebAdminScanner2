@@ -38,7 +38,6 @@ class RwtSNController extends Controller
         
         RiwayatSN::create([
             'sn' => $request->sn,
-             
             'email' => $request->user,
             'status' => $request->status,
         ]);

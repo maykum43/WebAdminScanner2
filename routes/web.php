@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
 //index
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/customer', 'CustomerController@index')->name('customer');
 Route::get('/sn', 'SNController@index')->name('sn');
 Route::get('/snAktif', 'SNController@indexAktif')->name('sn_aktif');

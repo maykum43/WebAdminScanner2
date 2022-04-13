@@ -27,6 +27,9 @@ Route::get('create_his','Api\RiwayatController@create_his');
 Route::put('update_user/{email}','Api\UserController@update');
 Route::get('cari_pelanggan','Api\UserController@cari_pelanggan');
 Route::get('totalPoin','Api\RiwayatController@TotalPoin');
+Route::get('hadiahs', 'Api\HadiahController@listHadiah');
+Route::get('cari_hadiah', 'Api\HadiahController@cariHadiah');
+Route::get('redPoin','Api\RiwayatController@redeemPoin');
 
 Route::post('login','Api\UserController@login');
 Route::post('register','Api\UserController@register');
@@ -36,4 +39,7 @@ Route::post('create_his','Api\RiwayatController@create_his');
 // Route::post('update_user','Api\CustomerController@update');
 Route::post('cari_pelanggan','Api\UserController@cari_pelanggan');
 Route::post('totalPoin','Api\RiwayatController@TotalPoin');
+Route::post('hadiahs', 'Api\HadiahController@listHadiah');
+Route::post('cari_hadiah', 'Api\HadiahController@cariHadiah');
+Route::post('redPoin','Api\RiwayatController@redeemPoin');
 

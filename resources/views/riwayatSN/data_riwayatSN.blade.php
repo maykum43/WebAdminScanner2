@@ -44,9 +44,9 @@
                             <th style="width: 10px">No</th>
                             <th>Serial Number</th>
                             <th>Nama Produk</th>
-                            <th>Email Customer</th>
+                            <th>Nama Customer</th>
                             <th>Poin</th>
-                            <th>Tanggal Discann</th>
+                            <th>Tanggal Scaning</th>
                             {{-- <th style="width: 70px">Action  --}}
                             </th>
                         </tr>

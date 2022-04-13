@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SnProduk;
+use App\User;
+use App\RiwayatSN;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $hitScan = RiwayatSN::count();
+        $hitUser = User::count();
+        $hitSn = SnProduk::count();
+        $hitModel = SnProduk::where('model')->count();
+
+        return view('home',compact('hitScan','hitUser','hitSn','hitModel'));
     }
+
+    
 }

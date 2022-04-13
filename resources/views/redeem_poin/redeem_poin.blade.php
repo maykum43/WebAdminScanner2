@@ -64,7 +64,7 @@
                             <td>{{ $data->email}}</td>
                             <td>{{ $data->nama_hadiah}}</td>
                             <td>{{$data->jml_poin}}</td>
-                            <td>{{$data->create_at}}</td>
+                            <td>{{$data->created_at}}</td>
                             <td>{{$data->status}}</td>
                             <td>
                                 <div class="btn-group">

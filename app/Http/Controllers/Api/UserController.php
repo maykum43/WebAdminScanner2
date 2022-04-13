@@ -42,7 +42,6 @@ class UserController extends Controller
             }
             return $this->error('Password anda salah');    
         }
-
         return $this->error('Email tidak ditemukan ');
     }
 

@@ -45,7 +45,7 @@
                         <tr>
                             <th style="width: 10px">No</th>
                             <th>Nama </th>
-                            <th>Poin Total Poin</th>
+                            <th>Total Poin Scanning</th>
                             {{-- <th style="width: 170px">Action
                             </th> --}}
                         </tr>
@@ -54,7 +54,7 @@
                         @php
                         $i = 1;
                         @endphp
-
+                        {{-- @if (is_array($sisaPoin) || is_object($sisaPoin)) --}}
                         @foreach ($poin_user as $data)
                         <tr class="odd">
                             <td>{{ $i++ }}</td>
@@ -62,6 +62,7 @@
                             <td>{{ $data->totalPoin}}</td>
                         </tr>
                         @endforeach
+                        {{-- @endif --}}
                     </tbody>
                 </table>
                 <p>

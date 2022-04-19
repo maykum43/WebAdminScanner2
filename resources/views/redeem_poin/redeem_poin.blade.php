@@ -68,11 +68,9 @@
                             <td>{{$data->status}}</td>
                             <td>
                                 <div class="btn-group">
-                                    {{-- {{ route('hadiah.edit',$data->id)}} --}}
-                                    <a href="" 
+                                    <a href="{{ route('done_riw',$data->id)}}" 
                                         class="btn btn-info btn-sm">Selesai</a>
-                                        {{-- {{ route('Hdelete_hadiah',$data->id)}} --}}
-                                    <a href=""
+                                    <a href="{{ route('delete_red',$data->id)}}"
                                         class="btn btn-danger btn-sm">Hapus</a>
                                 </div>
                             </td>

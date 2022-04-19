@@ -7,6 +7,11 @@ use App\RiwRedModel;
 
 class RedeemPoinController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -86,7 +91,7 @@ class RedeemPoinController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 
     public function viewPoinCust()
@@ -109,5 +114,25 @@ class RedeemPoinController extends Controller
 
         $req_poinHadiah = HadiahModel::where('name',$request->name)->get('req_poin');
         
+    }
+    public function selesai($id)
+    {
+        $update = RiwRedModel::where('id',$id)->update([
+            'status' => 'Selesai',
+        ]);
+
+        if(!$update){
+            return redirect()->route('redeemPoin.index')->with('error','data gagal di selesaikan');
+        }
+        return redirect()->route('redeemPoin.index')->with('success','Data berhasil diselesaikan');
+    }
+    public function HardDelete($id)
+    {
+        $delete = RiwRedModel::where('id',$id)->delete();
+
+        if(!$delete){
+            return redirect()->route('redeemPoin.index')->with('error','Data gagal di dihapus');
+        }
+        return redirect()->route('redeemPoin.index')->with('success','Data berhasil di hapus');
     }
 }

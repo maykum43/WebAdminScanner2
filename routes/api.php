@@ -30,6 +30,7 @@ Route::get('totalPoin','Api\RiwayatController@TotalPoin');
 Route::get('hadiahs', 'Api\HadiahController@listHadiah');
 Route::get('cari_hadiah', 'Api\HadiahController@cariHadiah');
 Route::get('redPoin','Api\RiwayatController@redeemPoin');
+Route::get('riwred','Api\RiwayatController@riwred');
 
 Route::post('login','Api\UserController@login');
 Route::post('register','Api\UserController@register');
@@ -42,4 +43,6 @@ Route::post('totalPoin','Api\RiwayatController@TotalPoin');
 Route::post('hadiahs', 'Api\HadiahController@listHadiah');
 Route::post('cari_hadiah', 'Api\HadiahController@cariHadiah');
 Route::post('redPoin','Api\RiwayatController@redeemPoin');
+Route::post('riwred','Api\RiwayatController@riwred');
+Route::post('totalRedPoin','Api\RiwayatController@totalHadiah');
 

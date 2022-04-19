@@ -17,7 +17,6 @@ class CreateRiwayatRedeemTable extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->integer('jml_poin')->default(0);
-            $table->string('status')->default('Diproses');
             $table->string('nama_hadiah');
             $table->timestamps();
         });

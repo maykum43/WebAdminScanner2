@@ -62,6 +62,8 @@ Route::get('/cari_user','CustomerController@cariSN')->name('cari_user');
 
 Route::resource('/hadiah', 'HadiahController');
 Route::resource('/redeemPoin', 'RedeemPoinController');
+Route::get('/DoneRiw/{id}', 'RedeemPoinController@selesai')->name('done_riw');
+Route::get('/Delete/{id}','RedeemPoinController@HardDelete')->name('delete_red');
 
 Route::get('/HdeleteHadiah/{id}','HadiahController@Hdelete')->name('Hdelete_hadiah');
 Route::get('/PoinCust', 'HadiahController@viewPoinCust')->name('PoinUser');

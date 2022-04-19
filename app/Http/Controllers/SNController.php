@@ -96,7 +96,7 @@ class SNController extends Controller
 
     public function import(){
         return view('import');
-    }
+    } 
 
     public function store(Request $request){
         

@@ -51,18 +51,18 @@ class RiwayatController extends Controller
         // $sn = SNCashback::where('sn',$request)->first();
         $model = SnProduk::where('sn',$request->sn)->value('model');
         $poin = SnProduk::where('sn',$request->sn)->value('poin');
+        $status = SnProduk::where('sn',$request->sn)->value('status');
 
-        $create_his = RiwayatSN::create([
-            'sn' => $request->sn,
-            'email' => $request->user,
-            'model' => $model,
-            'poin' => $poin,
-        ]);
-        
-        SnProduk::where('sn',$request->sn)->update([
-            'status' => 'Nonaktif',
-        ]);
-
+         
+            $create = RiwayatSN::create([
+                'sn' => $request->sn,
+                'email' => $request->user,
+                'model' => $model,
+                'poin' => $poin,
+            ]);
+            SnProduk::where('sn',$request->sn)->update([
+                'status' => 'Nonaktif',
+            ]);
         if($create_his){
                return response()->json([
                'success' => 1,
@@ -87,7 +87,7 @@ class RiwayatController extends Controller
                         'success' => 1,
                         'message' => 'Total Poin',
                         'Nama User' => $request->email,
-                        'TotalPoin' => $sisaPoin.' Poin'
+                        'TotalPoin' => $sisaPoin
                         ]);
                     }
         elseif ($sisaPoin == null) {
@@ -123,13 +123,13 @@ class RiwayatController extends Controller
             $riwayatRed = RiwRedModel::create([
                 'email'=> $request->email,
                 'jml_poin'=> $req_poinHadiah,
-                'status'=>$request->status,
+                'status'=>'Diproses',
                 'nama_hadiah'=>$request->name,
             ]);
 
-            HadiahModel::where('name',$request->name)->update([
-                // 'stok' => ,
-            ]);
+            // HadiahModel::where('name',$request->name)->update([
+            //     // 'stok' => ,
+            // ]);
 
             if($riwayatRed){
                 return response()->json([
@@ -145,6 +145,7 @@ class RiwayatController extends Controller
                 'error' => 0,
                 'message'=>'Mohon maaf, Poin kamu tidak mencukupi.',
                 'Nama'=>$request->email,
+                'Poin Kamu'=>$result,
                 'Poin yang Dibutuhkan'=>$sisaPoin2,
                 'Nama Hadiah'=>$request->name,
                 'Poin Hadiah'=>$req_poinHadiah
@@ -155,6 +156,36 @@ class RiwayatController extends Controller
 
     public function riwRed(Request $request)
     {
-        
+        $riwred = RiwRedModel::where('email',$request->email)->orderBy('created_at','desc')->get();
+
+        if($riwred){
+            return response()->json([
+            'success' => 1,
+            'message' => 'Hasil Riwayat',
+            'riwayat' => $riwred
+            ]);
+     }
+     return $this->error('Belum ada history Redeem.');
     }
+
+    public function totalHadiah (Request $request)
+    {
+        $countHad = RiwRedModel::where('email',$request->email)->count('email');
+
+        if($countHad > 0 || $countHad  ==! null){
+            return response()->json([
+            'success' => 1,
+            'message' => 'Data hadiah '.$request->email.' berhasil diambil',
+            'riwayat' => $countHad
+            ]);
+        }elseif ($countHad == 0 || $countHad == null) {
+            return response()->json([
+                'success' => 1,
+                'message' => 'Belum ada history Redeem',
+                'riwayat' => 0
+                ]);
+        }
+        return $this->error('Terjadi kesalahan.');
+    }
+
 }

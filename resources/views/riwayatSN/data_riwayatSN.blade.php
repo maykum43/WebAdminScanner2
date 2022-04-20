@@ -47,7 +47,7 @@
                             <th>Nama Customer</th>
                             <th>Poin</th>
                             <th>Tanggal Scaning</th>
-                            {{-- <th style="width: 70px">Action  --}}
+                            <th style="width: 70px">Action 
                             </th>
                         </tr>
                     </thead>
@@ -64,16 +64,14 @@
                             <td>{{ $data['email']}}</td>
                             <td>{{ $data['poin']}}</td>
                             <td>{{ $data['created_at']}}</td>
-                            {{-- <td>
+                            <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('update_status',$data->id_rwt)}}"
-                                        class="btn btn-success btn-sm">Selesai</a> --}}
                                     {{-- <a href="{{ route('edit_riw',$data->id_rwt)}}"
-                                        class="btn btn-warning btn-sm">Edit</a> --}}
-                                    <!-- <a href="{{ route('delete_riw',$data->id_rwt)}}" 
-                                            class="btn btn-danger btn-sm">Hapus</a> -->
-                                {{-- </div>
-                            </td> --}}
+                                        class="btn btn-warning btn-sm">Detail</a> --}}
+                                    <a href="{{ route('delete_riw',$data->id_rwt)}}" 
+                                            class="btn btn-danger btn-sm">Hapus</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

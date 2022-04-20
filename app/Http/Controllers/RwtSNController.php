@@ -17,9 +17,9 @@ class RwtSNController extends Controller
     public function index(Request $request){
 
         if($request->has('cari')){
-            $riw = RiwayatSN::where('email','LIKE','%'.$request->cari.'%')->paginate(10);
+            $riw = RiwayatSN::where('email','LIKE','%'.$request->cari.'%')->where('is_active' == 1)->paginate(10);
         }else{
-            $riw = RiwayatSN::orderBy('created_at','desc')->paginate(10);
+            $riw = RiwayatSN::where('is_active', 1)->orderBy('created_at','desc')->paginate(10);
         }
         return view('riwayatSN.data_riwayatSN', compact('riw'));
     }
@@ -84,7 +84,7 @@ class RwtSNController extends Controller
 
     public function SoftDelete($id, RiwayatSN $rwsn){
 
-        $simpan = $rwsn->where('id_rwsn',$id)->update([
+        $simpan = $rwsn->where('id_rwt',$id)->update([
             'is_active' => '0',
         ]);
 

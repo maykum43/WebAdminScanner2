@@ -47,13 +47,14 @@ class RiwayatController extends Controller
 
     public function create_his(Request $request){
         // dd($request->all());
+        $statusAktif = 'Aktif';
         
         // $sn = SNCashback::where('sn',$request)->first();
         $model = SnProduk::where('sn',$request->sn)->value('model');
         $poin = SnProduk::where('sn',$request->sn)->value('poin');
         $status = SnProduk::where('sn',$request->sn)->value('status');
 
-         
+         if ($status == "Aktif") {
             $create = RiwayatSN::create([
                 'sn' => $request->sn,
                 'email' => $request->user,
@@ -63,15 +64,20 @@ class RiwayatController extends Controller
             SnProduk::where('sn',$request->sn)->update([
                 'status' => 'Nonaktif',
             ]);
-        if($create_his){
-               return response()->json([
-               'success' => 1,
-               'message' => 'Success menyimpan riwayat',
-               'riws' => $create_his
-               ]);
-        }
-
-        return $this->error('Gagl Menyimpan History.');
+            if($create){
+                return response()->json([
+                'success' => 1,
+                'message' => 'Success menyimpan riwayat',
+                'riws' => $create
+                ]);
+            } 
+         }elseif ($status == "Nonaktif"){
+            return response()->json([
+                'success' => 1,
+                'message' => 'Duplikat Serial Number',
+                'sn' => $request->sn
+                ]);
+         }      
 
         // return redirect()->route('rwtsn');
     }

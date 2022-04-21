@@ -77,7 +77,9 @@ class RiwayatController extends Controller
                 'message' => 'Duplikat Serial Number',
                 'sn' => $request->sn
                 ]);
-         }      
+         }
+
+         return $this->error('Mohon maaf, SN bukan dari kami.');
 
         // return redirect()->route('rwtsn');
     }

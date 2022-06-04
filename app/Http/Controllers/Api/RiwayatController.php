@@ -39,6 +39,7 @@ class RiwayatController extends Controller
                return response()->json([
                'success' => 1,
                'message' => 'Hasil Riwayat',
+            //    'email' => $request->his_sn,
                'riws' => $his
                ]);
         }
@@ -104,11 +105,9 @@ class RiwayatController extends Controller
             'message' => 'Total Poin',
             'Nama User' => $request->email,
             'TotalPoin' => 0
-            ]);
-            
+            ]);            
         }
          return $this->error('Poin Error.');
-
     }
 
     public function redeemPoin(Request $request)

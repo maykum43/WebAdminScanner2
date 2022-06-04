@@ -1,6 +1,7 @@
 <html lang="en" style="height: auto;"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
   <title>Admin GPT Poin</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -166,7 +167,65 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Promosi
+                <i class="fas fa-angle-down right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('slider.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Slidebar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('promosis.content') }} " class="nav-link">                  
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Content</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
+                <a href="{{ route('promosi.index') }}" class="nav-link">
+                  <i class="fas fa-image nav-icon"></i>
+                  <p>Daftar Promosi Aktif</p>
+                </a>
+              </li> --}}
+            </ul>
+          </li>
           <!-- menu Redeem Voucher -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Tentang Perusahaan
+                <i class="fas fa-angle-down right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('comp.privacy') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Privacy Policy Aplication</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('comp.terms') }} " class="nav-link">                  
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Terms & Conditions Aplikasi</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
+                <a href="{{ route('promosi.index') }}" class="nav-link">
+                  <i class="fas fa-image nav-icon"></i>
+                  <p>Daftar Promosi Aktif</p>
+                </a>
+              </li> --}}
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-gift"></i>
@@ -276,4 +335,122 @@ $(function () {
 </script>
 
 
-<div class="daterangepicker ltr show-ranges opensright"><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom Range">Custom Range</li></ul></div><div class="drp-calendar left"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div><div class="jqvmap-label" style="display: none;"></div></body></html>
+<div class="daterangepicker ltr show-ranges opensright"><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom Range">Custom Range</li></ul></div><div class="drp-calendar left"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div><div class="jqvmap-label" style="display: none;"></div>
+
+<script>
+  $(function(e){
+      $("#chkCheckAll").click(function(){
+          $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+      })
+  });
+
+</script>
+<script type="text/javascript">
+  $(document).ready(function () {
+
+
+      $('#master').on('click', function(e) {
+       if($(this).is(':checked',true))  
+       {
+          $(".sub_chk").prop('checked', true);  
+       } else {  
+          $(".sub_chk").prop('checked',false);  
+       }  
+      });
+
+
+      $('.delete_all').on('click', function(e) {
+
+
+          var allVals = [];  
+          $(".sub_chk:checked").each(function() {  
+              allVals.push($(this).attr('data-id'));
+          });  
+
+
+          if(allVals.length <=0)  
+          {  
+              alert("Minimal pilih 1 data untuk dihapus.");  
+          }  else {  
+
+
+              var check = confirm("Yakin menghapus semua data ?");  
+              if(check == true){  
+
+
+                  var join_selected_values = allVals.join(","); 
+
+
+                  $.ajax({
+                      url: $(this).data('url'),
+                      type: 'DELETE',
+                      headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        // "_token": "{{ csrf_token() }}"
+                      },
+                      data: 'id='+join_selected_values,
+                      success: function (data) {
+                          if (data['success']) {
+                              $(".sub_chk:checked").each(function() {  
+                                  $(this).parents("tr").remove();
+                              });
+                              alert(data['success']);
+                          } else if (data['error']) {
+                              alert(data['error']);
+                          } else {
+                              alert('Whoops, terjadi kesalahan!');
+                          }
+                      },
+                      error: function (data) {
+                          alert(data.responseText);
+                      }
+                  });
+
+
+                $.each(allVals, function( index, value ) {
+                    $('table tr').filter("[data-row-id='" + value + "']").remove();
+                });
+              }  
+          }  
+      });
+
+
+      $('[data-toggle=confirmation]').confirmation({
+          rootSelector: '[data-toggle=confirmation]',
+          onConfirm: function (event, element) {
+              element.trigger('confirm');
+          }
+      });
+
+
+      $(document).on('confirm', function (e) {
+          var ele = e.target;
+          e.preventDefault();
+
+
+          $.ajax({
+              url: ele.href,
+              type: 'DELETE',
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              success: function (data) {
+                  if (data['success']) {
+                      $("#" + data['tr']).slideUp("slow");
+                      alert(data['success']);
+                  } else if (data['error']) {
+                      alert(data['error']);
+                  } else {
+                      alert('Whoops, terjadi kesalahan!');
+                  }
+              },
+              error: function (data) {
+                  alert(data.responseText);
+              }
+          });
+
+
+          return false;
+      });
+  });
+</script>
+
+</body></html>

@@ -44,6 +44,8 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <button style="margin-bottom: 10px" class="btn btn-danger  delete_all" data-url="{{ url('DeleteAll') }}">Delete All Selected</button>
+                            <th width="50px"><input type="checkbox" id="master"></th>
                             <th style="width: 10px">No</th>
                             <th>Serial Number </th>
                             <th>Nama Produk</th>
@@ -62,6 +64,7 @@
                         @endphp
                         @foreach($sn as $data)
                         <tr>
+                            <td><input type="checkbox" class="sub_chk" data-id="{{$data->id}}"></td>
                             <td>{{ $i++ }}</td>
                             <td>{{ $data->sn}}</td>
                             <td>{{ $data->model}}</td>
@@ -92,7 +95,7 @@
 
     </div><!-- /.container-fluid -->
 
-    <!-- Modal Export Data-->
+    <!-- Modal Import Data-->
     <div class="modal fade" id="ModalExportData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -135,4 +138,6 @@
 </section>
 <!-- /.content -->
 </div>
+
+
 @endsection

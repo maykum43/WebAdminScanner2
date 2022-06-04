@@ -27,9 +27,12 @@ class UserController extends Controller {
         if($user) {
 
             if(password_verify($request->password, $user->password)) {
-                return response()->json([ 'success'=> 1,
-                    'message'=> 'Selamat Datang '.$user->name." dengan ID : ".$user->id,
-                    'user'=> $user]);
+                return response()->json([ 
+                    'success'=> 1,
+                    'message'=> 'Selamat Datang '.$user->name,
+                    // dengan ID : ".$user->id,
+                    'user'=> $user
+                ]);
             }
 
             return $this->error('Password anda salah');

@@ -24,6 +24,9 @@ Route::get('/sn', 'SNController@index')->name('sn');
 Route::get('/snAktif', 'SNController@indexAktif')->name('sn_aktif');
 Route::get('/rwt', 'RwtSNController@index')->name('rwtsn');
 
+Route::get('/privacy', 'CompController@privacy')->name('comp.privacy');
+Route::get('/terms', 'CompController@terms')->name('comp.terms');
+
 //create
 Route::get('/create_sn', 'SNController@create')->name('create_sn');
 Route::post('/simpan_sn', 'SNController@simpan')->name('simpan_sn');
@@ -32,7 +35,7 @@ Route::post('/simpan_us', 'CustomerController@simpan')->name('simpan_us');
 Route::get('/create_riw', 'RWTSNController@create')->name('create_riw');
 Route::post('/simpan_riw', 'RWTSNController@simpan')->name('simpan_riw');
 
-//export
+//import
 Route::post('/import', 'SNController@store')->name('import_sn');
 
 //edit
@@ -52,6 +55,7 @@ Route::get('/deleteRiw/{id_rwt}', 'RWTSNController@softDelete')->name('delete_ri
 Route::get('/deleteUsr/{id}', 'CustomerController@softDelete')->name('delete_user');
 Route::get('/HdeleteUsr/{id}', 'CustomerController@hardDelete')->name('Hdelete_user');
 Route::get('/HdeleteSn/{id}','SNController@hardDelete')->name('Hdelete_sn');
+Route::delete('DeleteAll', 'SNController@deleteAll');
 
 //search
 Route::get('/cari_sn','SNController@cariSN')->name('cari_sn');
@@ -67,3 +71,18 @@ Route::get('/Delete/{id}','RedeemPoinController@HardDelete')->name('delete_red')
 
 Route::get('/HdeleteHadiah/{id}','HadiahController@Hdelete')->name('Hdelete_hadiah');
 Route::get('/PoinCust', 'HadiahController@viewPoinCust')->name('PoinUser');
+
+Route::resource('/promosi', 'PromosiController');
+Route::get('/DeletePromosi/{id}','PromosiController@Delete')->name('promosi.delete');
+
+Route::get('/promosi-slidebar', 'PromosisController@IndexSlidebar')->name('promosis.slidebar');
+Route::get('/add-slidebar','PromosisController@createSlidebar')->name('create.slidebar');
+Route::post('/create-slidebar','PromosisController@storeSlidebar')->name('store.slidebar');
+Route::get('/edi-slidebar/{id}', 'PromosisController@editSlidebar')->name('edit.slidebar');
+Route::post('/update_slidebar/{id}','PromosisController@updateSlidebar')->name('update.slidebar');
+
+
+Route::get('/promosi-content', 'PromosisController@IndexContent')->name('promosis.content');
+
+Route::resource('/slider', 'SliderController');
+Route::resource('/content', 'ContentController');

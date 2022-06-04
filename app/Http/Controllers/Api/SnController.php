@@ -20,7 +20,8 @@ class SnController extends Controller
 
     public function cari_sn(Request $request){
 
-        $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->where('status','Aktif')->get();
+        // $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->where('status','Aktif')->get();
+        $sn = SnProduk::where('sn',$request->cari_sn)->where('status','Aktif')->get();
 
         if($sn !== null){
                return response()->json([
@@ -30,6 +31,13 @@ class SnController extends Controller
                ]);
         }
         return $this->error('SN tidak ditemukan');
+    }
+
+    public function error($pesan){
+        return response()->json([
+            'success' => 0,
+            'message' => $pesan
+        ]);
     }
 }
 

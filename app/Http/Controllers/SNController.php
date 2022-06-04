@@ -19,7 +19,7 @@ class SNController extends Controller
         if($request->has('cari_sn')){
                     $sn = SnProduk::where('sn','LIKE','%'.$request->cari_sn.'%')->orWhere('model','LIKE','%'.$request->cari_sn.'%')->paginate(10);
                 }else{
-                    $sn = SnProduk::paginate(10);
+                    $sn = SnProduk::orderBy('created_at','desc')->paginate(10);
                 }
                 return view('sn.data_sn', compact('sn'));
     }
@@ -89,6 +89,13 @@ class SNController extends Controller
         }
         return redirect()->route('sn')->with('success','Data berhasil di hapus');
     }
+    
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("sn_produk")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
+    }
 
     public function export(){
         return Excel::download(new SerialNumberExport, 'SN.xlsx');
@@ -102,7 +109,7 @@ class SNController extends Controller
         
         Excel::import(new SNImport, $request->file('excel'));
 
-        return redirect()->route('sn')->with('success','data berhasil di dinonaktifkan');
+        return redirect()->route('sn')->with('success','Data Behasil di Import.');
         // ->withSuccess('Data Behasil di Import!');
     }
 }
